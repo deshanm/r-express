@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "allowJs": true,
+        "target": "es6",
+        "strict": true,
+        "noEmitOnError": true,
+        "strictNullChecks": true,
+    },
+    "include": ["lib/**/*", "examples/**/*", "test/**/*"],
+    "exclude": [
+        "./benchmarks",
+        "./.github",
+        "node_modules"
+    ]
+}
