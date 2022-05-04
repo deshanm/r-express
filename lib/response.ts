@@ -1142,7 +1142,7 @@ function sendfile(res, file, options, callback) {
  * @private
  */
 
-function stringify (value, replacer, spaces, escape) {
+function stringify (value: any, replacer?: (this: any, key: string, value: any) => any, spaces?: string | number, escape?: boolean) {
   // v8 checks arguments.length for optimizing simple call
   // https://bugs.chromium.org/p/v8/issues/detail?id=4730
   var json = replacer || spaces
