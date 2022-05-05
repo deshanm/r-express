@@ -851,8 +851,14 @@ res.clearCookie = function clearCookie(name, options) {
  * @public
  */
 
-res.cookie = function (name, value, options) {
-  var opts = merge({}, options);
+interface Options {
+  maxAge?: number | null;
+  signed: string;
+  path: string;
+  expires?: any;
+}
+res.cookie = function (name: string, value: string| object, options: Options) {
+  var opts: Options = merge({}, options);
   var secret = this.req.secret;
   var signed = opts.signed;
 
@@ -868,14 +874,19 @@ res.cookie = function (name, value, options) {
     val = 's:' + sign(val, secret);
   }
 
-  if (opts.maxAge != null) {
-    var maxAge = opts.maxAge - 0
+  // if (opts.maxAge != null) {
+  //   var maxAge = opts.maxAge - 0
 
-    if (!isNaN(maxAge)) {
-      opts.expires = new Date(Date.now() + maxAge)
-      opts.maxAge = Math.floor(maxAge / 1000)
-    }
-  }
+  //   if (!isNaN(maxAge)) {
+  //     opts.expires = new Date(Date.now() + maxAge)
+  //     opts.maxAge = Math.floor(maxAge / 1000)
+  //   }
+  // }
+
+  // if ('maxAge' in opts) {
+  //   opts.expires = new Date(Date.now() + opts.maxAge);
+  //   opts.maxAge /= 1000;
+  // }
 
   if (opts.path == null) {
     opts.path = '/';
