@@ -356,7 +356,7 @@ app.param = function param(name, fn) {
  * @public
  */
 
-app.set = function set(setting, val) {
+app.set = function set(setting: string, val: any) {
   if (arguments.length === 1) {
     // // app.get(setting)
     // var settings = this.settings
