@@ -21,10 +21,13 @@ app.get('/', function(req, res){
     '</ul>')
 });
 
+interface ErrorWithStatus extends Error {
+  status: number;
+}
 // /files/* is accessed via req.params[0]
 // but here we name it :file
-app.get('/files/:file(*)', function(req, res, next){
-  res.download(req.params.file, { root: FILES_DIR }, function (err) {
+app.get('/files/:file(*)', function(req: any, res: any, next: Function){
+  res.download(req.params.file, { root: FILES_DIR }, function (err: ErrorWithStatus) {
     if (!err) return; // file sent
     if (err && err.status !== 404) return next(err); // non-404 error
     // file for download not found
