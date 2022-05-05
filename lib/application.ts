@@ -356,20 +356,21 @@ app.param = function param(name, fn) {
  * @public
  */
 
-app.set = function set(setting, val) {
+app.set = function set(setting: string, val: any) {
   if (arguments.length === 1) {
-    // app.get(setting)
-    var settings = this.settings
+    // // app.get(setting)
+    // var settings = this.settings
 
-    while (settings && settings !== Object.prototype) {
-      if (hasOwnProperty.call(settings, setting)) {
-        return settings[setting]
-      }
+    // while (settings && settings !== Object.prototype) {
+    //   if (hasOwnProperty.call(settings, setting)) {
+    //     return settings[setting]
+    //   }
 
-      settings = Object.getPrototypeOf(settings)
-    }
+    //   settings = Object.getPrototypeOf(settings)
+    // }
 
-    return undefined
+    // return undefined
+    return this.settings[setting];
   }
 
   debug('set "%s" to %o', setting, val);
