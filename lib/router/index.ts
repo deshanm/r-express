@@ -290,13 +290,13 @@ proto.handle = function handle(req, res, out) {
     });
   }
 
-  function trim_prefix(layer, layerError, layerPath, path) {
+  function trim_prefix(layer: object, layerError: Error, layerPath: string, path: string) {
     if (layerPath.length !== 0) {
       // Validate path is a prefix match
-      if (layerPath !== path.slice(0, layerPath.length)) {
-        next(layerError)
-        return
-      }
+      // if (layerPath !== path.slice(0, layerPath.length)) {
+      //   next(layerError)
+      //   return
+      // }
 
       // Validate path breaks on a path separator
       var c = path[layerPath.length]
