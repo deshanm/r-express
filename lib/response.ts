@@ -108,7 +108,7 @@ res.links = function(links){
  * @public
  */
 
-res.send = function send(body) {
+res.send = function send(body: string | Buffer | Object) {
   var chunk = body;
   var encoding;
   var req = this.req;
@@ -181,19 +181,19 @@ res.send = function send(body) {
 
   // populate Content-Length
   var len
-  if (chunk !== undefined) {
-    // if (Buffer.isBuffer(chunk)) {
-    //   // get length of Buffer
-    //   len = chunk.length
-    // } else if (!generateETag && chunk.length < 1000) {
-    //   // just calculate length when no ETag + small chunk
-    //   len = Buffer.byteLength(chunk, encoding)
-    // } else {
-    //   // convert chunk to Buffer and calculate
-    //   chunk = Buffer.from(chunk, encoding)
-    //   encoding = undefined;
-    //   len = chunk.length
-    // }
+  // if (chunk !== undefined) {
+  //   if ((Buffer).isBuffer(chunk)) {
+  //     // get length of Buffer
+  //     len = (chunk as Buffer).length
+  //   } else if (!generateETag && chunk.length < 1000) {
+  //     // just calculate length when no ETag + small chunk
+  //     len = Buffer.byteLength(chunk, encoding)
+  //   } else {
+  //     // convert chunk to Buffer and calculate
+  //     chunk = Buffer.from(chunk, encoding)
+  //     encoding = undefined;
+  //     len = chunk.length
+  //   }
 
     if (!generateETag && chunk.length < 1000) {
       // just calculate length when no ETag + small chunk
