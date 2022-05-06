@@ -681,16 +681,23 @@ res.type = function contentType(type) {
  * @public
  */
 
-res.format = function(obj){
-  var req = this.req;
+interface Req { 
+  // https://github.com/types/express/blob/master/lib/request.d.ts#L248
+  accepts(type: string | string[]): string | void;
+  next: Function;
+}
+
+res.format = function(obj: Object){
+  var req: Req = this.req;
   var next = req.next;
 
   var keys = Object.keys(obj)
     .filter(function (v) { return v !== 'default' })
 
-  var key = keys.length > 0
-    ? req.accepts(keys)
-    : false;
+  // var key = keys.length > 0
+  //   ? req.accepts(keys)
+  //   : false;
+  var key = req.accepts(keys);
 
   this.vary("Accept");
 
