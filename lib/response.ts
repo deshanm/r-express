@@ -312,7 +312,7 @@ res.jsonp = function jsonp(obj) {
   var replacer = app.get('json replacer');
   var spaces = app.get('json spaces');
   var body = stringify(val, replacer, spaces, escape)
-  var callback = this.req.query[app.get('jsonp callback name')];
+  var callback: string | Array<any> | undefined = this.req.query[app.get('jsonp callback name')];
 
   // content-type
   if (!this.get('Content-Type')) {
@@ -320,10 +320,7 @@ res.jsonp = function jsonp(obj) {
     this.set('Content-Type', 'application/json');
   }
 
-  // fixup callback
-  if (Array.isArray(callback)) {
-    callback = callback[0];
-  }
+  if (callback instanceof Array) callback = callback[0];
 
   // jsonp
   if (typeof callback === 'string' && callback.length !== 0) {
