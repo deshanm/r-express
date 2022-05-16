@@ -312,7 +312,7 @@ res.jsonp = function jsonp(obj) {
   var replacer = app.get('json replacer');
   var spaces = app.get('json spaces');
   var body = stringify(val, replacer, spaces, escape)
-  var callback = this.req.query[app.get('jsonp callback name')];
+  var callback: string | Array<any> | undefined = this.req.query[app.get('jsonp callback name')];
 
   // content-type
   if (!this.get('Content-Type')) {

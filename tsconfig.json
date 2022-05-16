@@ -4,6 +4,7 @@
         "allowJs": true,
         "target": "es6",
         "strict": true,
+        "alwaysStrict": true,
         "noEmitOnError": true,
         "strictNullChecks": true,
     },
