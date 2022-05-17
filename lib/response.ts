@@ -590,9 +590,7 @@ res.download = function download (path, filename, options, callback) {
   opts.headers = headers
 
   // Resolve the full path for sendFile
-  var fullPath = !opts.root
-    ? resolve(path)
-    : path
+  var fullPath = resolve(path);
 
   // send file
   return this.sendFile(fullPath, opts, done)
