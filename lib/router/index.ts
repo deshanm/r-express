@@ -134,7 +134,7 @@ proto.param = function param(name, fn) {
  */
 
 proto.handle = function handle(req, res, out) {
-  var self = this;
+  var self: any = this;
 
   debug('dispatching %s %s', req.method, req.url);
 
@@ -217,9 +217,9 @@ proto.handle = function handle(req, res, out) {
     }
 
     // find next matching layer
-    var layer;
+    var layer: any;
     var match;
-    var route;
+    var route: string | any;
 
     while (match !== true && idx < stack.length) {
       layer = stack[idx++];
@@ -270,6 +270,7 @@ proto.handle = function handle(req, res, out) {
       req.route = route;
     }
 
+
     // Capture one-time layer values
     req.params = self.mergeParams
       ? mergeParams(layer.params, parentParams)
@@ -277,7 +278,7 @@ proto.handle = function handle(req, res, out) {
     var layerPath = layer.path;
 
     // this should be done for the layer
-    self.process_params(layer, paramcalled, req, res, function (err) {
+    self.process_params(layer, paramcalled, req, res, function (err: Error) {
       if (err) {
         return next(layerError || err);
       }
